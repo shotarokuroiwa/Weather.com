@@ -1,5 +1,7 @@
 export type WeatherData = {
   city: string;
+  lat: number;
+  lon: number;
   temp: number;
   feelsLike: number;
   description: string;
@@ -11,10 +13,10 @@ export type WeatherData = {
 const API_KEY = import.meta.env.VITE_API_KEY;
 const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
-const fetchdata = async (city: string): Promise<WeatherData> => {
+const fetchdata = async (lat: number, lon: number): Promise<WeatherData> => {
   try {
     const res = await fetch(
-      `${BASE_URL}?q=${city}&appid=${API_KEY}&units=metric&lang=ja`
+      `${BASE_URL}?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric&lang=ja`
     );
     if (!res.ok) {
       if (res.status === 404) {
@@ -26,8 +28,10 @@ const fetchdata = async (city: string): Promise<WeatherData> => {
     const data = await res.json();
     return {
       city: data.name,
-      temp: data.main.temp,
+      lat: data.coord.lat,
+      lon: data.coord.lon,
       feelsLike: data.main.feels_like,
+      temp: data.main.temp,
       description: data.weather[0]?.description || "",
       humidity: data.main.humidity,
       windSpeed: data.wind.speed,

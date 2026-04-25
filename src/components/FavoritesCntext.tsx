@@ -1,9 +1,15 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
+interface Coord { 
+  lon: number;
+  lat: number;
+  city?: string;
+}
+
 interface FavoritesContextType {
-  favorites: string[];
-  addFavorite: (city: string) => void;
-  removeFavorite: (city: string) => void;
+  favorites: Coord[];
+  addFavorite: (coord: Coord) => void;
+  removeFavorite: (coord: Coord) => void;
 }
 
 interface childrenProps {

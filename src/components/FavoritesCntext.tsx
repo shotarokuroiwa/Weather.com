@@ -41,7 +41,8 @@ export const FavoritesProvider = ({ children }: childrenProps) => {
 
 export const useFavorites = () => {
   const context = useContext(FavoritesContext);
-  if (context) {
+  if (!context) {
     throw new Error("useFavorites must be used within Provider")
   }
+  return context;
 }

@@ -1,0 +1,49 @@
+.searchbar {
+  position: relative;
+  width: 300px;
+}
+
+.searchbar input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px 0;
+  font-size: 14px;
+  outline: none;
+}
+
+.searchbar input:focus {
+  border-color: #007bff;
+}
+
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+
+  background: white;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 6px 6px;
+
+  max-height: 200px;
+  overflow-y: auto;
+
+  z-index: 1000;
+}
+
+.dropdown li {
+  padding: 10px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.dropdown li:hover {
+  background-color: #f5f5f5;
+}
+
+.dropdown li.active {
+  background-color: #007bff;
+  color: white;
+}

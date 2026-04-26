@@ -19,7 +19,7 @@ interface childrenProps {
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export const FavoritesProvider = ({ children }: childrenProps) => {
-  const [favorites, setFavorites] = useState<string[]>(() => {
+  const [favorites, setFavorites] = useState<Coord[]>(() => {
     const saved = localStorage.getItem('favorites');
     return saved ? JSON.parse(saved) : [];
   })
@@ -28,18 +28,19 @@ export const FavoritesProvider = ({ children }: childrenProps) => {
     localStorage.setItem('favorites', JSON.stringify(favorites));
   }, [favorites])
 
-  const addFavorite = (city: string) => {
-    if (!favorites.includes(city)) {
-      setFavorites([...favorites, city]);
-    }
-  }
+  const addFavorite = (coord: Coord) => {
+    const isExist = favorites.some(fav => fav.lat === coord.lat && fav.lon === coord.lon)
+    if (!isExist) {
+      setFavorites(prev => [...prev, coord]);
+    };
+  };
 
-  const removeFavorite = (city: string) => {
-    setFavorites(favorites.filter(c => c !== city));
-  }
+  const removeFavorite = (coord: Coord) => {
+    setFavorites(favorites.filter(fav => fav.lat !== coord.lat || fav.lon !== coord.lon));
+  };
 
   return (
-    <FavoritesContext value={{ favorites, addFavorite, removeFavorite }}> // .providerは不要
+    <FavoritesContext value={{ favorites, addFavorite, removeFavorite }}>
       {children}
     </FavoritesContext>
   )

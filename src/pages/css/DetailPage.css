@@ -6,6 +6,20 @@
   width: 100%;
 }
 
+.container button {
+  display: block;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+.btn-remove {
+  color: #FF2962;
+}
+
+.btn-add {
+  color; #2C3EFF;
+}
+
 .container h2 {
   font-size: 2em;
 }

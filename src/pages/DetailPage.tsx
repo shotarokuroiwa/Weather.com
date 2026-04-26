@@ -1,9 +1,12 @@
 import { useParams } from "react-router-dom";
 import useWeather from "../hook/useWeather";
+import { useFavorites } from "../components/FavoritesCntext";
 
 const DetailPage = () => {
  const { lat, lon } = useParams<{ lat: string; lon: string }>();
  const { weather, loading, error } = useWeather(Number(lat), Number(lon));
+ const { favorites, addFavorite, removeFavorite } = useFavorites();
+ const isliked = favorites.some(fav => fav.lat === Number(lat) && fav.lon === Number(lon));
  
   if (error) {
     return <div style={{ color: "red" }}>{error}</div>;
@@ -15,8 +18,20 @@ const DetailPage = () => {
     return <div>データがありません</div>;
   }
 
+  const hundleToggleFavorite = () => {
+    const currentCoord = {lat: Number(lat), lon: Number(lon), city: weather?.city}
+    if (isliked) {
+      removeFavorite(currentCoord);
+    } else {
+      addFavorite(currentCoord);
+    }
+  }
+
   return (
     <div className="container">
+      <button onClick={hundleToggleFavorite} className={isliked ? "btn-remove" : "btn-add"}>
+        {isliked ? "＋" : "－"}
+      </button>
       <h1>{weather.city}</h1>
       <img
       src={`https://openweathermap.org/img/wn/${weather.icon}@2x.png`}

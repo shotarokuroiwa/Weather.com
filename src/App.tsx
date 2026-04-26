@@ -11,7 +11,7 @@ function App() {
       <FavoritesProvider>
         <Routes>
           <Route path='/' element={<HomePage />} />
-          <Route path='/weather/:city' element={<DetailPage />} />
+          <Route path='/weather/:lat/:lon' element={<DetailPage />} />
           <Route path='*' element={<NotFoundPage />} />
         </Routes>
       </FavoritesProvider>

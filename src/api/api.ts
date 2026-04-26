@@ -3,9 +3,11 @@ export type WeatherData = {
   lat: number;
   lon: number;
   temp: number;
+  tempMin: number;
+  tempMax: number;
   feelsLike: number;
-  description: string;
-  humidity: number;
+  description: string; // 詳細(少し曇り等)
+  humidity: number; // 湿度 
   windSpeed: number;
   icon: string;
 }
@@ -30,8 +32,10 @@ const fetchdata = async (lat: number, lon: number): Promise<WeatherData> => {
       city: data.name,
       lat: data.coord.lat,
       lon: data.coord.lon,
-      feelsLike: data.main.feels_like,
       temp: data.main.temp,
+      tempMin: data.main.temp_min,
+      tempMax: data.main.temp_max,
+      feelsLike: data.main.feels_like,
       description: data.weather[0]?.description || "",
       humidity: data.main.humidity,
       windSpeed: data.wind.speed,

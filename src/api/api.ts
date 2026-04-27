@@ -1,4 +1,4 @@
-export type WeatherData = {
+export interface WeatherData {
   city: string;
   lat: number;
   lon: number;
@@ -13,7 +13,7 @@ export type WeatherData = {
 }
 
 export const API_KEY = import.meta.env.VITE_API_KEY;
-const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
+export const BASE_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 const fetchdata = async (lat: number, lon: number): Promise<WeatherData> => {
   try {

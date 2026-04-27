@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react'
 
-interface Coord { 
+export interface Coord {
   lon: number;
   lat: number;
   city?: string;

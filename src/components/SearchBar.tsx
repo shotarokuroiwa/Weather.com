@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom';
 import useDebounce from '../hook/useDebounce'
 import { API_KEY } from '../api/api';
+import './css/SearchBar.css';
 
 export interface CityType {
   name: string;

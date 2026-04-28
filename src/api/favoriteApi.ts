@@ -28,8 +28,8 @@ const fetchFavorite = async (favorites: Coord[]): Promise<FavoriteData[]> => {
             const data = await res.json();
             return {
               city: data.name,
-              lat: data.coord.lat,
-              lon: data.coord.lon,
+              lat: fav.lat,
+              lon: fav.lon,
               temp: Math.round(data.main.temp),
               tempMin: Math.round(data.main.temp_min),
               tempMax: Math.round(data.main.temp_max),

@@ -15,7 +15,6 @@ const SearchBar = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const debounceValue = useDebounce(inputValue, 500);
   const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
   const [cities, setCities] = useState<CityType[]>([]);
   const [cursor, setCursor] = useState(-1);
 
@@ -27,7 +26,6 @@ const SearchBar = () => {
     };
 
     const fetchCity = async () => {
-      setLoading(true);
       setError(null);
       try {
         const res = await fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${debounceValue}&limit=2&appid=${API_KEY}`)
@@ -42,10 +40,6 @@ const SearchBar = () => {
           } else {
             setError("予期せぬエラーが発生しました")
           }
-        }
-      } finally {
-        if (!ignore) {
-          setLoading(false);
         }
       }
     }
@@ -87,7 +81,7 @@ const SearchBar = () => {
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
         onBlur={() => {
-          setTimeout(() => setCities([]), 200);
+          setTimeout(() => setCities([]), 300);
         }}
         onKeyDown={handleKeyDown}
       />

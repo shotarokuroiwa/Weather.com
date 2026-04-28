@@ -58,7 +58,7 @@ const SideBar = () => {
         ) : error ? (
           <p style={{ color: 'red' }}>{error}</p>
         ) : favWeathers.length === 0 ? (
-          <p>お気に入り未登録</p>
+          <p style={{ textAlign: "center", marginTop: "10px", opacity: "0.4" }}>No favorites added.</p>
         ) : (
           favWeathers.map((weather) => (
             <div key={`${weather.lat}-${weather.lon}`} className='fav-item'>

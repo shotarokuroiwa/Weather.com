@@ -38,7 +38,7 @@ const HomePage = () => {
     }
   };
 
-  if (!coords || loading) return <div>読み込み中...</div>;
+  if (!coords || loading) return <div style={{ display: "flex", justifyContent: "center" }}>読み込み中...</div>;
   if (error || !weather) return <div>{error}</div>;
 
   return (

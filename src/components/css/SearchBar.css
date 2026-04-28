@@ -1,36 +1,46 @@
 .searchbar {
+  width: 100%;
+  margin-bottom: 30px;
   position: relative;
-  width: 300px;
+  border-radius: 18px;
+  border: 1px solid #C4C4C4;
+  background-color: #C4C4C4;
+  z-index: 1001;
 }
 
 .searchbar input {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px 0;
   font-size: 14px;
   outline: none;
+  background: transparent;
+  border: none;
 }
 
-.searchbar input:focus {
-  border-color: #007bff;
+.searchbar input::placeholder {
+  opacity: 1;
+}
+
+.searchbar:has(.dropdown) {
+  border-radius: 18px 18px 0 0;
 }
 
 .dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
-  width: 100%;
+  left: -1px;
+  width: calc(100% + 2px);
+  border-top: none; /* 上の線だけ消して一体化 */
+  border-radius: 0 0 18px 18px; /* 下側を丸める */
 
-  background: white;
-  border: 1px solid #ccc;
+  background: #C4C4C4;
   border-top: none;
-  border-radius: 0 0 6px 6px;
 
-  max-height: 200px;
   overflow-y: auto;
+  overflow: hidden; /* リストの端を丸める */
 
   z-index: 1000;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .dropdown li {
@@ -40,10 +50,9 @@
 }
 
 .dropdown li:hover {
-  background-color: #f5f5f5;
+  background-color: #DCDCDC;
 }
 
 .dropdown li.active {
-  background-color: #007bff;
-  color: white;
+  background-color: #DCDCDC;
 }

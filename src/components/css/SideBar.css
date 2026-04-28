@@ -1,0 +1,87 @@
+.sidebar, .fav-item {
+  border: 1px solid #4E4E4E;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  margin: 0;
+  inset: 20px auto 20px 20px;
+}
+
+.fav-list {
+  flex: 1;
+  overflow: auto;
+}
+
+.fav-list::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar h1 {
+  margin: 10px;
+  margin-bottom: 15px;
+}
+
+.fav-item {
+  transition: transform 0.1s ease-in-out;
+}
+
+.fav-item:active {
+  transform: scale(0.95);
+}
+
+.item-upper, .item-lower {
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-upper h3 {
+  font-size: 1.3em
+}
+
+.item-lower img {
+  width: 50px;
+  height: auto;
+}
+
+.temp {
+  display: flex;
+}
+
+.temp p {
+  font-size: 2.3em;
+  line-height: 1;
+  margin-right: 5px;
+}
+
+.minmax {
+  display: flex;
+  align-items: center;
+}
+
+.minmax section {
+  display: flex;
+  align-items: center;
+  margin-left: 5px;
+}
+
+.minmax section span {
+  writing-mode: vertical-rl;
+  font-size: 0.5em;
+  color: #4E4E4E;
+}
+
+.minmax section p {
+  font-size: 1.45em;
+  margin-bottom: 2px;
+}

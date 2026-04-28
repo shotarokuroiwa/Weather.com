@@ -3,6 +3,7 @@ import useWeather from "../hook/useWeather";
 import { useFavorites } from "../components/FavoritesCntext";
 import WeatherView from "../components/WeatherCard";
 
+
 const DetailPage = () => {
   const { lat, lon } = useParams();
   const { weather, loading, error } = useWeather(Number(lat), Number(lon));
@@ -16,7 +17,7 @@ const DetailPage = () => {
     isliked ? removeFavorite(current) : addFavorite(current);
   };
 
-  if (loading) return <div>読み込み中...</div>;
+  if (loading) return <div style={{ display: "flex", justifyContent: "center", marginTop: "30px" }}>読み込み中...</div>;
   if (error || !weather) return <div>{error}</div>;
 
   return <WeatherView weather={weather} isliked={isliked} onToggleFavorite={handleToggle} />;

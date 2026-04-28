@@ -9,6 +9,7 @@ export interface FavoriteData {
   tempMin: number;
   tempMax: number;
   weather: string;
+  icon: string;
 };
 
 const fetchFavorite = async (favorites: Coord[]): Promise<FavoriteData[]> => {
@@ -29,10 +30,11 @@ const fetchFavorite = async (favorites: Coord[]): Promise<FavoriteData[]> => {
               city: data.name,
               lat: data.coord.lat,
               lon: data.coord.lon,
-              temp: data.main.temp,
-              tempMin: data.main.temp_min,
-              tempMax: data.main.temp_max,
+              temp: Math.round(data.main.temp),
+              tempMin: Math.round(data.main.temp_min),
+              tempMax: Math.round(data.main.temp_max),
               weather: data.weather[0]?.main || "",
+              icon: data.weather[0]?.icon || "",
             }
           })
         )

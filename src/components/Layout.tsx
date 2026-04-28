@@ -8,7 +8,7 @@ const Layout = () => {
         <SideBar />
       </aside>
 
-      <main className="content">
+      <main className="content" style={{ marginLeft: "250px", }}>
         <Outlet />
       </main>
     </div>

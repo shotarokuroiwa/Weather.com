@@ -4,7 +4,6 @@ import DetailPage from './pages/DetailPage'
 import NotFoundPage from './pages/NotFoundPage'
 import Layout from './components/Layout'
 import { FavoritesProvider } from './components/FavoritesCntext'
-import './App.css'
 
 function App() {
   return (

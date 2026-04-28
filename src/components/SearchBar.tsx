@@ -21,7 +21,10 @@ const SearchBar = () => {
 
   useEffect(() => {
     let ignore = false;
-    if (!debounceValue) return;
+    if (!debounceValue) {
+      setCities([]);
+      return;
+    };
 
     const fetchCity = async () => {
       setLoading(true);
@@ -55,7 +58,7 @@ const SearchBar = () => {
   const navigate = useNavigate();
   const handleSelect = (city: CityType) => {
     const { lat, lon } = city
-    navigate(`/weather?lat=${lat}&lon=${lon}`)
+    navigate(`/weather/${lat}/${lon}`)
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
@@ -80,13 +83,15 @@ const SearchBar = () => {
     <div className='searchbar'>
       <input
         type="text"
-        placeholder="都市名で検索..."
+        placeholder=" 🔎︎   都市名で検索..."
         value={inputValue}
         onChange={(e) => setInputValue(e.target.value)}
+        onBlur={() => {
+          setTimeout(() => setCities([]), 200);
+        }}
         onKeyDown={handleKeyDown}
       />
 
-      {loading && <p>読み込み中...</p>}
       {error && <div className='error'>{error}</div>}
 
       {!error && cities.length > 0 && (

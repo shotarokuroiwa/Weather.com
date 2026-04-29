@@ -13,6 +13,7 @@ const SideBar = () => {
 
   useEffect(() => {
     if (favorites.length === 0) {
+      setWeathers([]);
       setLoading(false);
       return;
     }
